@@ -815,7 +815,9 @@ func (rc *RongCloud) SystemSend(senderID string, targetID []string, objectName s
 *@param  senderID:发送人用户 ID 。
 *@param  objectName:消息类型
 *@param  msg:发送消息内容
-*
+*@param  pushContent:推送内容
+*@param  pushData:推送附加内容
+*@param  contentAvailable:允许应用在收到通知后在后台运行一段代码，且能够马上执行
 *@return error
  */
 func (rc *RongCloud) SystemBroadcast(senderID, objectName string, msg rcMsg, pushContent, pushData string, contentAvailable int) error {
