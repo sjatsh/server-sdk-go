@@ -818,7 +818,7 @@ func (rc *RongCloud) SystemSend(senderID string, targetID []string, objectName s
 *
 *@return error
  */
-func (rc *RongCloud) SystemBroadcast(senderID, objectName string, msg rcMsg) error {
+func (rc *RongCloud) SystemBroadcast(senderID, objectName string, msg rcMsg, pushContent, pushData string, contentAvailable int) error {
 	if senderID == "" {
 		return RCErrorNew(1002, "Paramer 'senderID' is required")
 	}
@@ -833,6 +833,9 @@ func (rc *RongCloud) SystemBroadcast(senderID, objectName string, msg rcMsg) err
 		return err
 	}
 	req.Param("content", msgr)
+	req.Param("pushContent", pushContent)
+	req.Param("pushData", pushData)
+	req.Param("contentAvailable", strconv.Itoa(contentAvailable))
 
 	_, err = rc.do(req)
 	if err != nil {
